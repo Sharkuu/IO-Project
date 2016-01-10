@@ -17,6 +17,15 @@ import javax.swing.Icon;
 public class interfejs {
 
 	private JFrame frame;
+	public JButton btnHome;
+	public JButton btnNowy;
+	public JButton btnNaprawy;
+	public JButton btnBazy;
+	public JButton btnUsers;
+	public JButton btnStat;
+	public JButton btnSzukaj;
+	public JButton btnSettings;
+	public JButton current;
 
 	/**
 	 * Launch the application.
@@ -125,6 +134,16 @@ public class interfejs {
 		////////////////przycisk home
 		ImageIcon home = new ImageIcon(getClass().getResource("home.png"));
 		JButton btnHome = new JButton(home);
+		current = btnHome;
+		btnHome.setEnabled(false);
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			btnHome.setEnabled(false);
+			current.setEnabled(true);
+			current = btnHome;
+				
+			}
+		});
 		btnHome.setBounds(21, 60, 193, 57);
 		btnHome.setContentAreaFilled(false);
 		btnHome.setBorder(BorderFactory.createEmptyBorder());
@@ -134,6 +153,12 @@ public class interfejs {
 		JButton btnNowy = new JButton(nowy);
 		btnNowy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				btnNowy.setEnabled(false);
+				current.setEnabled(true);
+				current = btnNowy;
+				
 			}
 		});
 		btnNowy.setBounds(21, 144, 193, 57);
@@ -144,6 +169,13 @@ public class interfejs {
 		ImageIcon naprawy = new ImageIcon(getClass().getResource("naprawy.png"));
 		
 		JButton btnNaprawy = new JButton(naprawy);
+		btnNaprawy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnNaprawy.setEnabled(false);
+				current.setEnabled(true);
+				current = btnNaprawy;
+			}
+		});
 		btnNaprawy.setContentAreaFilled(false);
 		btnNaprawy.setBorder(BorderFactory.createEmptyBorder());
 		btnNaprawy.setBounds(21, 198, 193, 57);
@@ -151,6 +183,13 @@ public class interfejs {
 		////////////////////przycisk bazy
 		ImageIcon bazy = new ImageIcon(getClass().getResource("bazy.png"));
 		JButton btnBazy = new JButton(bazy);
+		btnBazy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnBazy.setEnabled(false);
+				current.setEnabled(true);
+				current = btnBazy;
+			}
+		});
 		btnBazy.setContentAreaFilled(false);
 		btnBazy.setBorder(BorderFactory.createEmptyBorder());
 		btnBazy.setBounds(21, 249, 193, 57);
@@ -158,6 +197,13 @@ public class interfejs {
 		////////////////////////////////////przycisk uzytkownicy
 		ImageIcon users = new ImageIcon(getClass().getResource("users.png"));
 		JButton btnUsers = new JButton(users);
+		btnUsers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnUsers.setEnabled(false);
+				current.setEnabled(true);
+				current = btnUsers;
+			}
+		});
 		btnUsers.setContentAreaFilled(false);
 		btnUsers.setBorder(BorderFactory.createEmptyBorder());
 		btnUsers.setBounds(21, 299, 193, 57);
@@ -167,6 +213,13 @@ public class interfejs {
 		////////////przycisk szukaj
 		ImageIcon szukaj = new ImageIcon(getClass().getResource("szukaj.png"));
 		JButton btnSzukaj = new JButton(szukaj);
+		btnSzukaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnSzukaj.setEnabled(false);
+				current.setEnabled(true);
+				current = btnSzukaj;
+			}
+		});
 		btnSzukaj.setContentAreaFilled(false);
 		btnSzukaj.setBorder(BorderFactory.createEmptyBorder());
 		btnSzukaj.setBounds(21, 349, 193, 57);
@@ -176,6 +229,13 @@ public class interfejs {
 		///////////przycisk statystyki
 		ImageIcon stat = new ImageIcon(getClass().getResource("stat.png"));
 		JButton btnStat = new JButton(stat);
+		btnStat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnStat.setEnabled(false);
+				current.setEnabled(true);
+				current = btnStat;
+			}
+		});
 		btnStat.setContentAreaFilled(false);
 		btnStat.setBorder(BorderFactory.createEmptyBorder());
 		btnStat.setBounds(21, 400, 193, 57);
@@ -183,6 +243,13 @@ public class interfejs {
 		//////////////przyciski settings
 		ImageIcon settings = new ImageIcon(getClass().getResource("sett.png"));
 		JButton btnSettings = new JButton(settings);
+		btnSettings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnSettings.setEnabled(false);
+				current.setEnabled(true);
+				current = btnSettings;
+			}
+		});
 		btnSettings.setContentAreaFilled(false);
 		btnSettings.setBorder(BorderFactory.createEmptyBorder());
 		btnSettings.setBounds(21, 496, 193, 57);
