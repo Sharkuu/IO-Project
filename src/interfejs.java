@@ -25,7 +25,7 @@ public class interfejs {
 	public JButton btnStat;
 	public JButton btnSzukaj;
 	public JButton btnSettings;
-	public JButton current;
+	public JButton btnCurrent;
 
 	/**
 	 * Launch the application.
@@ -134,13 +134,13 @@ public class interfejs {
 		////////////////przycisk home
 		ImageIcon home = new ImageIcon(getClass().getResource("home.png"));
 		JButton btnHome = new JButton(home);
-		current = btnHome;
+		btnCurrent = btnHome;
 		btnHome.setEnabled(false);
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			btnHome.setEnabled(false);
-			current.setEnabled(true);
-			current = btnHome;
+			btnCurrent.setEnabled(true);
+			btnCurrent = btnHome;
 				
 			}
 		});
@@ -156,8 +156,8 @@ public class interfejs {
 				
 				
 				btnNowy.setEnabled(false);
-				current.setEnabled(true);
-				current = btnNowy;
+				btnCurrent.setEnabled(true);
+				btnCurrent = btnNowy;
 				
 			}
 		});
@@ -172,8 +172,8 @@ public class interfejs {
 		btnNaprawy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnNaprawy.setEnabled(false);
-				current.setEnabled(true);
-				current = btnNaprawy;
+				btnCurrent.setEnabled(true);
+				btnCurrent = btnNaprawy;
 			}
 		});
 		btnNaprawy.setContentAreaFilled(false);
@@ -186,8 +186,8 @@ public class interfejs {
 		btnBazy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnBazy.setEnabled(false);
-				current.setEnabled(true);
-				current = btnBazy;
+				btnCurrent.setEnabled(true);
+				btnCurrent = btnBazy;
 			}
 		});
 		btnBazy.setContentAreaFilled(false);
@@ -200,8 +200,8 @@ public class interfejs {
 		btnUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnUsers.setEnabled(false);
-				current.setEnabled(true);
-				current = btnUsers;
+				btnCurrent.setEnabled(true);
+				btnCurrent = btnUsers;
 			}
 		});
 		btnUsers.setContentAreaFilled(false);
@@ -216,8 +216,8 @@ public class interfejs {
 		btnSzukaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnSzukaj.setEnabled(false);
-				current.setEnabled(true);
-				current = btnSzukaj;
+				btnCurrent.setEnabled(true);
+				btnCurrent = btnSzukaj;
 			}
 		});
 		btnSzukaj.setContentAreaFilled(false);
@@ -232,8 +232,8 @@ public class interfejs {
 		btnStat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnStat.setEnabled(false);
-				current.setEnabled(true);
-				current = btnStat;
+				btnCurrent.setEnabled(true);
+				btnCurrent = btnStat;
 			}
 		});
 		btnStat.setContentAreaFilled(false);
@@ -246,14 +246,19 @@ public class interfejs {
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnSettings.setEnabled(false);
-				current.setEnabled(true);
-				current = btnSettings;
+				btnCurrent.setEnabled(true);
+				btnCurrent = btnSettings;
 			}
 		});
 		btnSettings.setContentAreaFilled(false);
 		btnSettings.setBorder(BorderFactory.createEmptyBorder());
 		btnSettings.setBounds(21, 496, 193, 57);
 		szybki_dostep.add(btnSettings);
+		
+		JPanel panel_glowny = new JPanel();
+		panel_glowny.setBounds(10, 87, 1072, 500);
+		frame.getContentPane().add(panel_glowny);
+		panel_glowny.setLayout(null);
 		
 		
 		
