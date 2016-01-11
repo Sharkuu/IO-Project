@@ -26,6 +26,7 @@ public class interfejs {
 	public JButton btnSzukaj;
 	public JButton btnSettings;
 	public JButton btnCurrent;
+	public JPanel panelCurrent;
 
 	/**
 	 * Launch the application.
@@ -60,6 +61,15 @@ public class interfejs {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		frame.setBackground(new Color(0xf7f7f7));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(10, 98, 1072, 489);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNaprawy_1 = new JLabel("naprawy");
+		lblNaprawy_1.setBounds(214, 214, 46, 14);
+		panel_1.add(lblNaprawy_1);
 
 		////////////////////panel gorny
 		JPanel panel = new JPanel();
@@ -153,8 +163,6 @@ public class interfejs {
 		JButton btnNowy = new JButton(nowy);
 		btnNowy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
 				btnNowy.setEnabled(false);
 				btnCurrent.setEnabled(true);
 				btnCurrent = btnNowy;
@@ -256,9 +264,13 @@ public class interfejs {
 		szybki_dostep.add(btnSettings);
 		
 		JPanel panel_glowny = new JPanel();
-		panel_glowny.setBounds(10, 87, 1072, 500);
+		panel_glowny.setBounds(10, 86, 1072, 501);
 		frame.getContentPane().add(panel_glowny);
 		panel_glowny.setLayout(null);
+		
+		JLabel lblNowy = new JLabel("nowy");
+		lblNowy.setBounds(181, 158, 46, 14);
+		panel_glowny.add(lblNowy);
 		
 		
 		
