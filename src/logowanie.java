@@ -182,6 +182,10 @@ public class logowanie {
 		btnZaloguj.setBorderPainted(false);
 		btnZaloguj.setFocusPainted(false);
 		
+		JLabel lblDemoV = new JLabel("Demo v.1");
+		lblDemoV.setBounds(473, 290, 83, 14);
+		frame.getContentPane().add(lblDemoV);
+		
 		
 		
 		///add(picLabel);

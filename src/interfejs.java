@@ -145,7 +145,7 @@ int tmp = 0;
 		
 		JPanel panel_glowny = new JPanel();
 		panel_glowny.setBackground(new Color(0xf7f7f7));
-		panel_glowny.setBounds(10, 87, 1072, 502);
+		panel_glowny.setBounds(10, 87, 1072, 497);
 		frame.getContentPane().add(panel_glowny);
 		panel_glowny.setLayout(null);
 		
@@ -286,6 +286,9 @@ btnSettings.setContentAreaFilled(false);
 btnSettings.setBorder(BorderFactory.createEmptyBorder());
 btnSettings.setBounds(21, 496, 193, 57);
 szybki_dostep.add(btnSettings);
+JLabel lblDemoV = new JLabel("Demo v.1");
+lblDemoV.setBounds(149, 551, 58, 14);
+szybki_dostep.add(lblDemoV);
 	/*	DODAWANIE PANELU
 panel_gl= new PanelGlowny();
 panel_glowny.add(panel_gl);
