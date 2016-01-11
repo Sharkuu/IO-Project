@@ -1,13 +1,15 @@
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
-
+import panels.*;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -139,7 +141,7 @@ public class interfejs {
 		
 		
 		JPanel panel_glowny = new JPanel();
-		panel_glowny.setBounds(10, 86, 1072, 501);
+		panel_glowny.setBounds(10, 49, 1072, 538);
 		frame.getContentPane().add(panel_glowny);
 		panel_glowny.setLayout(null);
 ////////////////przycisk home
@@ -184,11 +186,13 @@ btnNaprawy.addActionListener(new ActionListener() {
 		btnNaprawy.setEnabled(false);
 		btnCurrent.setEnabled(true);
 		btnCurrent = btnNaprawy;
-		
-		//panel_gl= new PanelGlowny();
-		//panel_glowny.add(new PanelGlowny(),80,80);
-		//panel_glowny.repaint();
-		//panel_gl.setVisible(true);
+		GridBagConstraints c = new GridBagConstraints();
+		panel_gl= new PanelGlowny();
+		c.gridx = 180;
+		c.gridy = 180;
+		panel_glowny.add(panel_gl,c);
+		panel_glowny.repaint();
+		panel_glowny.setVisible(true);
 		
 	}
 });
