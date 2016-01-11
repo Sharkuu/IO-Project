@@ -15,12 +15,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-import panels.PanelGlowny;
+import panels.NoweZlecenie;
 
 import javax.swing.Icon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class interfejs {
-
+int tmp = 0;
 	private JFrame frame;
 	public JButton btnHome;
 	public JButton btnNowy;
@@ -31,8 +33,8 @@ public class interfejs {
 	public JButton btnSzukaj;
 	public JButton btnSettings;
 	public JButton btnCurrent;
-	public JPanel panelCurrent;
-	public PanelGlowny panel_gl;
+	//public JPanel panelCurrent;
+	public NoweZlecenie panel_zlecenie;
 
 	/**
 	 * Launch the application.
@@ -98,6 +100,7 @@ public class interfejs {
 		lblLablogo.setBounds(0, 0, 90, 75);
 		panel.add(lblLablogo);
 		frame.setIconImage(img);
+		
 		////////////////////////////wylogowanie button
 		ImageIcon wyloguj = new ImageIcon(getClass().getResource("wyloguj.png"));
 		JButton btnWyloguj = new JButton(wyloguj);
@@ -141,19 +144,25 @@ public class interfejs {
 		
 		
 		JPanel panel_glowny = new JPanel();
-		panel_glowny.setBounds(10, 49, 1072, 538);
+		panel_glowny.setBackground(new Color(0xf7f7f7));
+		panel_glowny.setBounds(10, 87, 1072, 502);
 		frame.getContentPane().add(panel_glowny);
 		panel_glowny.setLayout(null);
+		
+		
 ////////////////przycisk home
 ImageIcon home = new ImageIcon(getClass().getResource("home.png"));
 JButton btnHome = new JButton(home);
 btnCurrent = btnHome;
-btnHome.setEnabled(false);
+//btnHome.setEnabled(false);
 btnHome.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
-	btnHome.setEnabled(false);
-	btnCurrent.setEnabled(true);
-	btnCurrent = btnHome;
+		/*btnHome.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnHome;*/
+
+	panel_glowny.remove(panel_zlecenie);
+	panel_glowny.repaint();
 		
 	}
 });
@@ -164,13 +173,19 @@ szybki_dostep.add(btnHome);
 ///////////////przycisk nowa naprawa
 ImageIcon nowy = new ImageIcon(getClass().getResource("nowy.png"));
 JButton btnNowy = new JButton(nowy);
+
 btnNowy.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
-		btnNowy.setEnabled(false);
+		
+		panel_zlecenie= new NoweZlecenie();
+		panel_glowny.add(panel_zlecenie);
+		panel_zlecenie.setVisible(true);
+		panel_glowny.repaint();
+		
+		/*btnNowy.setEnabled(false);
 		btnCurrent.setEnabled(true);
-		btnCurrent = btnNowy;
-		panelCurrent = panel_glowny;
-		panelCurrent.repaint();
+		btnCurrent = btnNowy;*/
+		
 	}
 });
 btnNowy.setBounds(21, 144, 193, 57);
@@ -183,16 +198,13 @@ ImageIcon naprawy = new ImageIcon(getClass().getResource("naprawy.png"));
 JButton btnNaprawy = new JButton(naprawy);
 btnNaprawy.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
-		btnNaprawy.setEnabled(false);
+		/*btnNaprawy.setEnabled(false);
 		btnCurrent.setEnabled(true);
-		btnCurrent = btnNaprawy;
-		GridBagConstraints c = new GridBagConstraints();
-		panel_gl= new PanelGlowny();
-		c.gridx = 180;
-		c.gridy = 180;
-		panel_glowny.add(panel_gl,c);
-		panel_glowny.repaint();
-		panel_glowny.setVisible(true);
+		btnCurrent = btnNaprawy;*/
+		
+		
+		//panel_glowny.repaint();
+		//panel_glowny.setVisible(true);
 		
 	}
 });
@@ -205,9 +217,9 @@ ImageIcon bazy = new ImageIcon(getClass().getResource("bazy.png"));
 JButton btnBazy = new JButton(bazy);
 btnBazy.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-		btnBazy.setEnabled(false);
+		/*btnBazy.setEnabled(false);
 		btnCurrent.setEnabled(true);
-		btnCurrent = btnBazy;
+		btnCurrent = btnBazy;*/
 	}
 });
 btnBazy.setContentAreaFilled(false);
@@ -219,9 +231,9 @@ ImageIcon users = new ImageIcon(getClass().getResource("users.png"));
 JButton btnUsers = new JButton(users);
 btnUsers.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-		btnUsers.setEnabled(false);
+		/*btnUsers.setEnabled(false);
 		btnCurrent.setEnabled(true);
-		btnCurrent = btnUsers;
+		btnCurrent = btnUsers;*/
 	}
 });
 btnUsers.setContentAreaFilled(false);
@@ -235,9 +247,9 @@ ImageIcon szukaj = new ImageIcon(getClass().getResource("szukaj.png"));
 JButton btnSzukaj = new JButton(szukaj);
 btnSzukaj.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-		btnSzukaj.setEnabled(false);
+		/*btnSzukaj.setEnabled(false);
 		btnCurrent.setEnabled(true);
-		btnCurrent = btnSzukaj;
+		btnCurrent = btnSzukaj;*/
 	}
 });
 btnSzukaj.setContentAreaFilled(false);
@@ -251,9 +263,9 @@ ImageIcon stat = new ImageIcon(getClass().getResource("stat.png"));
 JButton btnStat = new JButton(stat);
 btnStat.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-		btnStat.setEnabled(false);
+		/*btnStat.setEnabled(false);
 		btnCurrent.setEnabled(true);
-		btnCurrent = btnStat;
+		btnCurrent = btnStat;*/
 	}
 });
 btnStat.setContentAreaFilled(false);
@@ -265,17 +277,22 @@ ImageIcon settings = new ImageIcon(getClass().getResource("sett.png"));
 JButton btnSettings = new JButton(settings);
 btnSettings.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-		btnSettings.setEnabled(false);
+		/*btnSettings.setEnabled(false);
 		btnCurrent.setEnabled(true);
-		btnCurrent = btnSettings;
+		btnCurrent = btnSettings;*/
 	}
 });
 btnSettings.setContentAreaFilled(false);
 btnSettings.setBorder(BorderFactory.createEmptyBorder());
 btnSettings.setBounds(21, 496, 193, 57);
 szybki_dostep.add(btnSettings);
+	/*	DODAWANIE PANELU
+panel_gl= new PanelGlowny();
+panel_glowny.add(panel_gl);
+panel_gl.setVisible(true);
+*/
 		
-		
+			
 		
 	}
 }
