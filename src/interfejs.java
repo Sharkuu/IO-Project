@@ -12,6 +12,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+
+import panels.PanelGlowny;
+
 import javax.swing.Icon;
 
 public class interfejs {
@@ -27,6 +30,7 @@ public class interfejs {
 	public JButton btnSettings;
 	public JButton btnCurrent;
 	public JPanel panelCurrent;
+	public PanelGlowny panel_gl;
 
 	/**
 	 * Launch the application.
@@ -61,16 +65,6 @@ public class interfejs {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		frame.setBackground(new Color(0xf7f7f7));
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 98, 1072, 489);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNaprawy_1 = new JLabel("naprawy");
-		lblNaprawy_1.setBounds(214, 214, 46, 14);
-		panel_1.add(lblNaprawy_1);
-
 		////////////////////panel gorny
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0x606060));
@@ -141,136 +135,141 @@ public class interfejs {
 		label_dostep.setBounds(44, 11, 163, 14);
 		label_dostep.setForeground(new Color(0xfdfdfd));
 		szybki_dostep.add(label_dostep);
-		////////////////przycisk home
-		ImageIcon home = new ImageIcon(getClass().getResource("home.png"));
-		JButton btnHome = new JButton(home);
-		btnCurrent = btnHome;
-		btnHome.setEnabled(false);
-		btnHome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			btnHome.setEnabled(false);
-			btnCurrent.setEnabled(true);
-			btnCurrent = btnHome;
-				
-			}
-		});
-		btnHome.setBounds(21, 60, 193, 57);
-		btnHome.setContentAreaFilled(false);
-		btnHome.setBorder(BorderFactory.createEmptyBorder());
-		szybki_dostep.add(btnHome);
-		///////////////przycisk nowa naprawa
-		ImageIcon nowy = new ImageIcon(getClass().getResource("nowy.png"));
-		JButton btnNowy = new JButton(nowy);
-		btnNowy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnNowy.setEnabled(false);
-				btnCurrent.setEnabled(true);
-				btnCurrent = btnNowy;
-				
-			}
-		});
-		btnNowy.setBounds(21, 144, 193, 57);
-		btnNowy.setContentAreaFilled(false);
-		btnNowy.setBorder(BorderFactory.createEmptyBorder());
-		szybki_dostep.add(btnNowy);
-		/////////////////przycisk naprawy
-		ImageIcon naprawy = new ImageIcon(getClass().getResource("naprawy.png"));
-		
-		JButton btnNaprawy = new JButton(naprawy);
-		btnNaprawy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnNaprawy.setEnabled(false);
-				btnCurrent.setEnabled(true);
-				btnCurrent = btnNaprawy;
-			}
-		});
-		btnNaprawy.setContentAreaFilled(false);
-		btnNaprawy.setBorder(BorderFactory.createEmptyBorder());
-		btnNaprawy.setBounds(21, 198, 193, 57);
-		szybki_dostep.add(btnNaprawy);
-		////////////////////przycisk bazy
-		ImageIcon bazy = new ImageIcon(getClass().getResource("bazy.png"));
-		JButton btnBazy = new JButton(bazy);
-		btnBazy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnBazy.setEnabled(false);
-				btnCurrent.setEnabled(true);
-				btnCurrent = btnBazy;
-			}
-		});
-		btnBazy.setContentAreaFilled(false);
-		btnBazy.setBorder(BorderFactory.createEmptyBorder());
-		btnBazy.setBounds(21, 249, 193, 57);
-		szybki_dostep.add(btnBazy);
-		////////////////////////////////////przycisk uzytkownicy
-		ImageIcon users = new ImageIcon(getClass().getResource("users.png"));
-		JButton btnUsers = new JButton(users);
-		btnUsers.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnUsers.setEnabled(false);
-				btnCurrent.setEnabled(true);
-				btnCurrent = btnUsers;
-			}
-		});
-		btnUsers.setContentAreaFilled(false);
-		btnUsers.setBorder(BorderFactory.createEmptyBorder());
-		btnUsers.setBounds(21, 299, 193, 57);
-		szybki_dostep.add(btnUsers);
 		
 		
-		////////////przycisk szukaj
-		ImageIcon szukaj = new ImageIcon(getClass().getResource("szukaj.png"));
-		JButton btnSzukaj = new JButton(szukaj);
-		btnSzukaj.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnSzukaj.setEnabled(false);
-				btnCurrent.setEnabled(true);
-				btnCurrent = btnSzukaj;
-			}
-		});
-		btnSzukaj.setContentAreaFilled(false);
-		btnSzukaj.setBorder(BorderFactory.createEmptyBorder());
-		btnSzukaj.setBounds(21, 349, 193, 57);
-		szybki_dostep.add(btnSzukaj);
-		
-		
-		///////////przycisk statystyki
-		ImageIcon stat = new ImageIcon(getClass().getResource("stat.png"));
-		JButton btnStat = new JButton(stat);
-		btnStat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnStat.setEnabled(false);
-				btnCurrent.setEnabled(true);
-				btnCurrent = btnStat;
-			}
-		});
-		btnStat.setContentAreaFilled(false);
-		btnStat.setBorder(BorderFactory.createEmptyBorder());
-		btnStat.setBounds(21, 400, 193, 57);
-		szybki_dostep.add(btnStat);
-		//////////////przyciski settings
-		ImageIcon settings = new ImageIcon(getClass().getResource("sett.png"));
-		JButton btnSettings = new JButton(settings);
-		btnSettings.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnSettings.setEnabled(false);
-				btnCurrent.setEnabled(true);
-				btnCurrent = btnSettings;
-			}
-		});
-		btnSettings.setContentAreaFilled(false);
-		btnSettings.setBorder(BorderFactory.createEmptyBorder());
-		btnSettings.setBounds(21, 496, 193, 57);
-		szybki_dostep.add(btnSettings);
 		
 		JPanel panel_glowny = new JPanel();
 		panel_glowny.setBounds(10, 86, 1072, 501);
 		frame.getContentPane().add(panel_glowny);
 		panel_glowny.setLayout(null);
+////////////////przycisk home
+ImageIcon home = new ImageIcon(getClass().getResource("home.png"));
+JButton btnHome = new JButton(home);
+btnCurrent = btnHome;
+btnHome.setEnabled(false);
+btnHome.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent arg0) {
+	btnHome.setEnabled(false);
+	btnCurrent.setEnabled(true);
+	btnCurrent = btnHome;
 		
-		JLabel lblNowy = new JLabel("nowy");
-		lblNowy.setBounds(181, 158, 46, 14);
-		panel_glowny.add(lblNowy);
+	}
+});
+btnHome.setBounds(21, 60, 193, 57);
+btnHome.setContentAreaFilled(false);
+btnHome.setBorder(BorderFactory.createEmptyBorder());
+szybki_dostep.add(btnHome);
+///////////////przycisk nowa naprawa
+ImageIcon nowy = new ImageIcon(getClass().getResource("nowy.png"));
+JButton btnNowy = new JButton(nowy);
+btnNowy.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent arg0) {
+		btnNowy.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnNowy;
+		panelCurrent = panel_glowny;
+		panelCurrent.repaint();
+	}
+});
+btnNowy.setBounds(21, 144, 193, 57);
+btnNowy.setContentAreaFilled(false);
+btnNowy.setBorder(BorderFactory.createEmptyBorder());
+szybki_dostep.add(btnNowy);
+/////////////////przycisk naprawy
+ImageIcon naprawy = new ImageIcon(getClass().getResource("naprawy.png"));
+
+JButton btnNaprawy = new JButton(naprawy);
+btnNaprawy.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent arg0) {
+		btnNaprawy.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnNaprawy;
+		
+		//panel_gl= new PanelGlowny();
+		//panel_glowny.add(new PanelGlowny(),80,80);
+		//panel_glowny.repaint();
+		//panel_gl.setVisible(true);
+		
+	}
+});
+btnNaprawy.setContentAreaFilled(false);
+btnNaprawy.setBorder(BorderFactory.createEmptyBorder());
+btnNaprawy.setBounds(21, 198, 193, 57);
+szybki_dostep.add(btnNaprawy);
+////////////////////przycisk bazy
+ImageIcon bazy = new ImageIcon(getClass().getResource("bazy.png"));
+JButton btnBazy = new JButton(bazy);
+btnBazy.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		btnBazy.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnBazy;
+	}
+});
+btnBazy.setContentAreaFilled(false);
+btnBazy.setBorder(BorderFactory.createEmptyBorder());
+btnBazy.setBounds(21, 249, 193, 57);
+szybki_dostep.add(btnBazy);
+////////////////////////////////////przycisk uzytkownicy
+ImageIcon users = new ImageIcon(getClass().getResource("users.png"));
+JButton btnUsers = new JButton(users);
+btnUsers.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		btnUsers.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnUsers;
+	}
+});
+btnUsers.setContentAreaFilled(false);
+btnUsers.setBorder(BorderFactory.createEmptyBorder());
+btnUsers.setBounds(21, 299, 193, 57);
+szybki_dostep.add(btnUsers);
+
+
+////////////przycisk szukaj
+ImageIcon szukaj = new ImageIcon(getClass().getResource("szukaj.png"));
+JButton btnSzukaj = new JButton(szukaj);
+btnSzukaj.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		btnSzukaj.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnSzukaj;
+	}
+});
+btnSzukaj.setContentAreaFilled(false);
+btnSzukaj.setBorder(BorderFactory.createEmptyBorder());
+btnSzukaj.setBounds(21, 349, 193, 57);
+szybki_dostep.add(btnSzukaj);
+
+
+///////////przycisk statystyki
+ImageIcon stat = new ImageIcon(getClass().getResource("stat.png"));
+JButton btnStat = new JButton(stat);
+btnStat.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		btnStat.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnStat;
+	}
+});
+btnStat.setContentAreaFilled(false);
+btnStat.setBorder(BorderFactory.createEmptyBorder());
+btnStat.setBounds(21, 400, 193, 57);
+szybki_dostep.add(btnStat);
+//////////////przyciski settings
+ImageIcon settings = new ImageIcon(getClass().getResource("sett.png"));
+JButton btnSettings = new JButton(settings);
+btnSettings.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		btnSettings.setEnabled(false);
+		btnCurrent.setEnabled(true);
+		btnCurrent = btnSettings;
+	}
+});
+btnSettings.setContentAreaFilled(false);
+btnSettings.setBorder(BorderFactory.createEmptyBorder());
+btnSettings.setBounds(21, 496, 193, 57);
+szybki_dostep.add(btnSettings);
 		
 		
 		
