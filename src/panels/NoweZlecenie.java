@@ -24,7 +24,6 @@ import java.awt.event.MouseEvent;
 
 public class NoweZlecenie extends JPanel {
 	private JTextField textNazwa;
-	private JTextField txtNrklienta;
 	private JTextField txtImie;
 	private JTextField txtNazwisko;
 	private JTextField txtAdres;
@@ -178,12 +177,6 @@ public class NoweZlecenie extends JPanel {
 		lblKontakt.setBounds(40, 448, 98, 14);
 		add(lblKontakt);
 		
-		txtNrklienta = new JTextField();
-		txtNrklienta.setText("");
-		txtNrklienta.setBounds(167, 298, 116, 20);
-		add(txtNrklienta);
-		txtNrklienta.setColumns(10);
-		
 		txtImie = new JTextField();
 		txtImie.setText("");
 		txtImie.setBounds(167, 328, 116, 20);
@@ -216,11 +209,11 @@ public class NoweZlecenie extends JPanel {
 		
 		JLabel lblUrzadzenieinfo = new JLabel("Urzadzenie:");
 		lblUrzadzenieinfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblUrzadzenieinfo.setBounds(591, 11, 103, 14);
+		lblUrzadzenieinfo.setBounds(386, 11, 103, 14);
 		add(lblUrzadzenieinfo);
 		
 		JLabel lblRodzajurzadzenia = new JLabel("Rodzaj urzadzenia: ");
-		lblRodzajurzadzenia.setBounds(591, 36, 116, 14);
+		lblRodzajurzadzenia.setBounds(386, 36, 116, 14);
 		add(lblRodzajurzadzenia);
 		rodzajSprz.add("---");
 		JComboBox comboBoxRodzajUrz = new JComboBox();
@@ -259,132 +252,166 @@ public class NoweZlecenie extends JPanel {
 					imie =imie.substring(0, index);*/
 					comboBoxRodzajUrz.addItem(rodzajSprz.get(i));
 				}
-		comboBoxRodzajUrz.setBounds(706, 33, 182, 20);
+		comboBoxRodzajUrz.setBounds(501, 33, 182, 20);
 		add(comboBoxRodzajUrz);
 		
 		JLabel lblWybor = new JLabel("Wybierz urz¹dzenie z listy: ");
-		lblWybor.setBounds(591, 61, 167, 14);
+		lblWybor.setBounds(386, 61, 167, 14);
 		add(lblWybor);
 		
 		JComboBox comboBoxUrzadzenie = new JComboBox();
-		comboBoxUrzadzenie.setBounds(591, 75, 297, 20);
+		comboBoxUrzadzenie.setBounds(386, 75, 297, 20);
 		add(comboBoxUrzadzenie);
 		
 		JLabel lblWpiszinfo = new JLabel("lub wpisz rêcznie wszystkie podzespo³y:");
-		lblWpiszinfo.setBounds(591, 106, 297, 14);
+		lblWpiszinfo.setBounds(386, 106, 297, 14);
 		add(lblWpiszinfo);
 		
 		JLabel lblPlytaGlowna = new JLabel("P³yta g³ówna:");
-		lblPlytaGlowna.setBounds(591, 181, 103, 14);
+		lblPlytaGlowna.setBounds(386, 184, 103, 14);
 		add(lblPlytaGlowna);
 		
 		JLabel lblProcesor = new JLabel("Procesor:");
-		lblProcesor.setBounds(591, 206, 103, 14);
+		lblProcesor.setBounds(386, 209, 103, 14);
 		add(lblProcesor);
 		
 		JLabel lblKartaGraficzna = new JLabel("Karta graficzna:");
-		lblKartaGraficzna.setBounds(591, 231, 103, 14);
+		lblKartaGraficzna.setBounds(386, 234, 103, 14);
 		add(lblKartaGraficzna);
 		
 		JLabel lblBateria = new JLabel("Bateria:");
-		lblBateria.setBounds(591, 256, 103, 14);
+		lblBateria.setBounds(386, 259, 103, 14);
 		add(lblBateria);
 		
 		JLabel lblHdd = new JLabel("HDD:");
-		lblHdd.setBounds(591, 281, 103, 14);
+		lblHdd.setBounds(386, 284, 103, 14);
 		add(lblHdd);
 		
 		txtPlytaglowna = new JTextField();
 		txtPlytaglowna.setText("");
-		txtPlytaglowna.setBounds(706, 178, 182, 20);
+		txtPlytaglowna.setBounds(501, 181, 182, 20);
 		add(txtPlytaglowna);
 		txtPlytaglowna.setColumns(10);
 		
 		txtProcesor = new JTextField();
 		txtProcesor.setText("");
-		txtProcesor.setBounds(706, 203, 182, 20);
+		txtProcesor.setBounds(501, 206, 182, 20);
 		add(txtProcesor);
 		txtProcesor.setColumns(10);
 		
 		txtKartagraficzna = new JTextField();
 		txtKartagraficzna.setText("");
-		txtKartagraficzna.setBounds(706, 228, 182, 20);
+		txtKartagraficzna.setBounds(501, 231, 182, 20);
 		add(txtKartagraficzna);
 		txtKartagraficzna.setColumns(10);
 		
 		txtBateria = new JTextField();
 		txtBateria.setText("");
-		txtBateria.setBounds(706, 253, 182, 20);
+		txtBateria.setBounds(501, 256, 182, 20);
 		add(txtBateria);
 		txtBateria.setColumns(10);
 		
 		txtHdd = new JTextField();
 		txtHdd.setText("");
-		txtHdd.setBounds(706, 278, 182, 20);
+		txtHdd.setBounds(501, 281, 182, 20);
 		add(txtHdd);
 		txtHdd.setColumns(10);
 		
 		JLabel lblInfusterka = new JLabel("Informacje o usterce:");
-		lblInfusterka.setBounds(591, 341, 167, 14);
+		lblInfusterka.setBounds(760, 129, 167, 14);
 		add(lblInfusterka);
 		
 		JLabel lblOpisusterki = new JLabel("Opis usterki: ");
-		lblOpisusterki.setBounds(591, 358, 167, 14);
+		lblOpisusterki.setBounds(760, 146, 167, 14);
 		add(lblOpisusterki);
 		
 		JPanel panelOpisUsterki = new JPanel();
-		panelOpisUsterki.setBounds(591, 376, 297, 70);
+		panelOpisUsterki.setBounds(760, 164, 235, 70);
 		add(panelOpisUsterki);
 		panelOpisUsterki.setLayout(null);
 		
 		JTextPane txtpnOpisusterki = new JTextPane();
-		txtpnOpisusterki.setBounds(0, 0, 297, 70);
+		txtpnOpisusterki.setBounds(0, 0, 239, 70);
 		panelOpisUsterki.add(txtpnOpisusterki);
 		txtpnOpisusterki.setText("");
 		
 		JLabel lblDatausterki = new JLabel("Data wyst¹pienia usterki: ");
-		lblDatausterki.setBounds(591, 448, 168, 14);
+		lblDatausterki.setBounds(760, 236, 168, 14);
 		add(lblDatausterki);
 		
 		txtDataUsterki = new JTextField();
-		txtDataUsterki.setBounds(591, 471, 116, 20);
+		txtDataUsterki.setBounds(760, 259, 116, 20);
 		add(txtDataUsterki);
 		txtDataUsterki.setColumns(10);
 		
 		JLabel lblProducent = new JLabel("Producent:");
-		lblProducent.setBounds(591, 131, 103, 14);
+		lblProducent.setBounds(386, 134, 103, 14);
 		add(lblProducent);
 		
 		txtProducent = new JTextField();
 		txtProducent.setText("");
 		txtProducent.setColumns(10);
-		txtProducent.setBounds(706, 128, 182, 20);
+		txtProducent.setBounds(501, 131, 182, 20);
 		add(txtProducent);
 		
 		JLabel lblMatryca = new JLabel("Matryca:");
-		lblMatryca.setBounds(591, 306, 103, 14);
+		lblMatryca.setBounds(386, 309, 103, 14);
 		add(lblMatryca);
 		
 		txtMatryca = new JTextField();
 		txtMatryca.setText("");
 		txtMatryca.setColumns(10);
-		txtMatryca.setBounds(706, 303, 182, 20);
+		txtMatryca.setBounds(501, 306, 182, 20);
 		add(txtMatryca);
 		
 		JLabel label = new JLabel("Matryca:");
-		label.setBounds(591, 156, 103, 14);
+		label.setBounds(386, 159, 103, 14);
 		add(label);
 		
 		textField = new JTextField();
 		textField.setText("");
 		textField.setColumns(10);
-		textField.setBounds(706, 153, 182, 20);
+		textField.setBounds(501, 156, 182, 20);
 		add(textField);
+		
+		JLabel lblNrklientatxt = new JLabel("");
+		lblNrklientatxt.setBounds(167, 298, 116, 14);
+		add(lblNrklientatxt);
+		
+		JLabel lblOpisZlecenia = new JLabel("Opis zlecenia:");
+		lblOpisZlecenia.setBounds(40, 103, 98, 14);
+		add(lblOpisZlecenia);
+		
+		JPanel pnlOpisZlecenia = new JPanel();
+		pnlOpisZlecenia.setBounds(40, 134, 243, 57);
+		add(pnlOpisZlecenia);
+		pnlOpisZlecenia.setLayout(null);
+		
+		JTextPane textPanelOpisZlecenia = new JTextPane();
+		textPanelOpisZlecenia.setBounds(0, 0, 243, 57);
+		pnlOpisZlecenia.add(textPanelOpisZlecenia);
+		
+		JLabel lblUsterka = new JLabel("Usterka:");
+		lblUsterka.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUsterka.setBounds(760, 11, 103, 14);
+		add(lblUsterka);
+		
+		JLabel lblWybierzUsterkZ = new JLabel("Wybierz usterk\u0119 z listy: ");
+		lblWybierzUsterkZ.setBounds(760, 51, 167, 14);
+		add(lblWybierzUsterkZ);
+		
+		JComboBox comboBoxUsterka = new JComboBox();
+		comboBoxUsterka.setBounds(760, 73, 235, 20);
+		add(comboBoxUsterka);
+		
+		JLabel lblUsterkaRecznie = new JLabel("lub wpisz usterkê rêcznie: ");
+		lblUsterkaRecznie.setBounds(760, 104, 167, 14);
+		add(lblUsterkaRecznie);
 		
 		comboBoxWyszukaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((String) comboBoxWyszukaj.getSelectedItem()!="---"){
-					txtNrklienta.setEnabled(false);
+					//txtNrklienta.setEnabled(false);
 					txtImie.setEnabled(false);
 					txtNazwisko.setEnabled(false);
 					txtAdres.setEnabled(false);
@@ -408,7 +435,7 @@ public class NoweZlecenie extends JPanel {
 							Statement st = c.createStatement();
 							ResultSet rs = st.executeQuery("SELECT k.id_klienta, k.imie,k.nazwisko,k.adres,k.mail,k.inne FROM Klienci k  where k.imie = \'"+imie+"\' and k.nazwisko = \'"+nazwisko+"\';");
 							while (rs.next()){       
-									txtNrklienta.setText((rs.getString("id_klienta")));
+									lblNrklientatxt.setText((rs.getString("id_klienta")));
 						           txtImie.setText((rs.getString("imie"))) ;
 						           txtNazwisko.setText((rs.getString("nazwisko")));
 						           txtAdres.setText((rs.getString("adres")));
@@ -426,8 +453,8 @@ public class NoweZlecenie extends JPanel {
 					
 				}	
 				else {
-					txtNrklienta.setEnabled(true);
-					txtNrklienta.setText("");
+					//txtNrklienta.setEnabled(true);
+					lblNrklientatxt.setText("");
 					txtImie.setEnabled(true);
 					txtImie.setText("");
 					txtNazwisko.setEnabled(true);
