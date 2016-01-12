@@ -577,7 +577,7 @@ public class NoweZlecenie extends JPanel {
 					txtProducent.setText("");				
 					comboBoxUrzadzenie.removeAllItems();
 					comboBoxUrzadzenie.setEnabled(false);
-					
+					comboBoxUrzadzenie.addItem(pauzy);
 				}
 			}
 		});
