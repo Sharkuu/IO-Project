@@ -41,6 +41,8 @@ public class NoweZlecenie extends JPanel {
 	private JTextField textField;
 	public ArrayList<String> pracownicyImiona = new ArrayList<>();
 	public ArrayList<String> klienciImiona = new ArrayList<>();
+	public ArrayList<String> rodzajSprz = new ArrayList<>();
+	public ArrayList<String> sprzetModele = new ArrayList<>();
 	/**
 	 * Create the panel.
 	 */
@@ -94,7 +96,7 @@ public class NoweZlecenie extends JPanel {
 			             }
 				
 				st.close();
-			
+			c.close();
 		}
 		catch(SQLException z)  {
 			System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
@@ -136,7 +138,7 @@ public class NoweZlecenie extends JPanel {
 					             klienciImiona.add(imie_tmp+" "+nazwisko_tmp);
 					             }
 						st.close();
-						
+						c.close();
 					
 				}
 				catch(SQLException z)  {
@@ -220,8 +222,43 @@ public class NoweZlecenie extends JPanel {
 		JLabel lblRodzajurzadzenia = new JLabel("Rodzaj urzadzenia: ");
 		lblRodzajurzadzenia.setBounds(591, 36, 116, 14);
 		add(lblRodzajurzadzenia);
-		
+		rodzajSprz.add("---");
 		JComboBox comboBoxRodzajUrz = new JComboBox();
+		
+		try { 
+			c = DriverManager.getConnection("jdbc:postgresql://horton.elephantsql.com:5432/cgztcato",
+		            "cgztcato", "En74d8gVrZZAtiO97NEYI7FN-DiReO9h");
+		  } catch (SQLException se) {
+		    System.out.println("Brak polaczenia z baza danych, wydruk logu sledzenia i koniec.");
+		    se.printStackTrace();
+		    System.exit(1);}
+				
+				try{
+									
+											
+						Statement st = c.createStatement();
+						ResultSet rs = st.executeQuery("SELECT  s.nazwa FROM RodzajSprzetu s ;");
+						while (rs.next()){       
+							
+					           String  rodzaj_tmp = (rs.getString("nazwa")) ;
+					           //String  rodzajID_tmp = (rs.getString("id_rodzaj")) ;
+					             rodzajSprz.add(rodzaj_tmp /*+" "+ rodzajID_tmp*/);
+					            
+					             }
+						st.close();
+						c.close();
+					
+				}
+				catch(SQLException z)  {
+					System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
+					}
+				for (int i =0;i<rodzajSprz.size();i++){
+					/*String rodzajNazwa = rodzajSprz.get(i);
+					int index =rodzajNazwa.indexOf(" ");
+					String rodzajID = imie.substring(index+1);
+					imie =imie.substring(0, index);*/
+					comboBoxRodzajUrz.addItem(rodzajSprz.get(i));
+				}
 		comboBoxRodzajUrz.setBounds(706, 33, 182, 20);
 		add(comboBoxRodzajUrz);
 		
@@ -381,7 +418,7 @@ public class NoweZlecenie extends JPanel {
 						             }
 							
 							st.close();
-						
+						c.close();
 					}
 					catch(SQLException z)  {
 						System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
@@ -403,6 +440,47 @@ public class NoweZlecenie extends JPanel {
 					txtKontakt.setText("");
 					
 				}
+			}
+		});
+		comboBoxRodzajUrz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sprzetModele.removeAll(sprzetModele);
+				Connection c = null;
+				try { 
+					c = DriverManager.getConnection("jdbc:postgresql://horton.elephantsql.com:5432/cgztcato",
+				            "cgztcato", "En74d8gVrZZAtiO97NEYI7FN-DiReO9h");
+				  } catch (SQLException se) {
+				    System.out.println("Brak polaczenia z baza danych, wydruk logu sledzenia i koniec.");
+				    se.printStackTrace();
+				    System.exit(1);}
+						
+						try{
+											
+													
+								Statement st = c.createStatement();
+								ResultSet rs = st.executeQuery("SELECT  s.producent,s.model FROM Sprzet s, RodzajSprzetu r where r.nazwa = \'"+(String)comboBoxRodzajUrz.getSelectedItem()+"\' AND r.id_rodzaj = s.id_rodzaj ;");
+								while (rs.next()){       
+									
+							           String  producent_tmp = (rs.getString("producent")) ;
+							           String  model_tmp = (rs.getString("model")) ;
+							           sprzetModele.add(producent_tmp+" "+model_tmp);
+							             }
+								st.close();
+								c.close();
+							
+						}
+						catch(SQLException z)  {
+							System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
+							}
+						comboBoxUrzadzenie.removeAllItems();
+						for (int i =0;i<sprzetModele.size();i++){
+							/*String rodzajNazwa = rodzajSprz.get(i);
+							int index =rodzajNazwa.indexOf(" ");
+							String rodzajID = imie.substring(index+1);
+							imie =imie.substring(0, index);*/
+							comboBoxUrzadzenie.addItem(sprzetModele.get(i));
+						}
+				
 			}
 		});
 	}

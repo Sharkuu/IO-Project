@@ -36,6 +36,7 @@ public class logowanie {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					logowanie window = new logowanie();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -148,7 +149,7 @@ public class logowanie {
 					            	 break;
 					             }
 						}
-						
+						st.close();
 					
 				}
 				catch(SQLException z)  {
