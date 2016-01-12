@@ -135,11 +135,11 @@ public class logowanie {
 									
 											
 						Statement st = c.createStatement();
-						ResultSet rs = st.executeQuery("SELECT p.ID_Stanowiska, p.Imie,p.Nazwsko FROM Pracownicy p where p.Login =\'"+login+"\' and p.Haslo = \'"+password+"\' ;");
+						ResultSet rs = st.executeQuery("SELECT p.id_stanowiska, p.imie,p.nazwisko FROM Pracownicy p where p.login =\'"+login+"\' and p.haslo = \'"+password+"\' ;");
 						while (rs.next()){       
-							 idstanowisko = (rs.getString("ID_Stanowiska")) ;
-					             imie_tmp = (rs.getString("Imie")) ;
-					             nazwisko_tmp = (rs.getString("Nazwsko")) ;
+							 idstanowisko = (rs.getString("id_stanowiska")) ;
+					             imie_tmp = (rs.getString("imie")) ;
+					             nazwisko_tmp = (rs.getString("nazwisko")) ;
 					             
 					             if(!idstanowisko.isEmpty()){
 					            	 stanowiskoid = Integer.parseInt(idstanowisko);

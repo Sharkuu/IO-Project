@@ -5,6 +5,13 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -12,6 +19,8 @@ import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class NoweZlecenie extends JPanel {
 	private JTextField textNazwa;
@@ -30,7 +39,8 @@ public class NoweZlecenie extends JPanel {
 	private JTextField txtProducent;
 	private JTextField txtMatryca;
 	private JTextField textField;
-
+	public ArrayList<String> pracownicyImiona = new ArrayList<>();
+	public ArrayList<String> klienciImiona = new ArrayList<>();
 	/**
 	 * Create the panel.
 	 */
@@ -41,8 +51,8 @@ public class NoweZlecenie extends JPanel {
 		setLayout(null);
 		
 		JLabel lblDodaj = new JLabel("Dodaj nowe zlecenie");
-		lblDodaj.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDodaj.setBounds(40, 26, 137, 14);
+		lblDodaj.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDodaj.setBounds(40, 26, 137, 25);
 		add(lblDodaj);
 		
 		JLabel lblNazwa = new JLabel("Nazwa:");
@@ -57,12 +67,42 @@ public class NoweZlecenie extends JPanel {
 		textNazwa.setBounds(167, 51, 116, 20);
 		add(textNazwa);
 		textNazwa.setColumns(10);
-		
+		pracownicyImiona.add("---");
+		klienciImiona.add("---");
 		JComboBox comboBoxSerwisant = new JComboBox();
 		comboBoxSerwisant.setBounds(167, 75, 116, 20);
 		add(comboBoxSerwisant);
+		Connection c = null;
+		try { 
+	c = DriverManager.getConnection("jdbc:postgresql://horton.elephantsql.com:5432/cgztcato",
+            "cgztcato", "En74d8gVrZZAtiO97NEYI7FN-DiReO9h");
+  } catch (SQLException se) {
+    System.out.println("Brak polaczenia z baza danych, wydruk logu sledzenia i koniec.");
+    se.printStackTrace();
+    System.exit(1);}
 		
+		try{
+							
+									
+				Statement st = c.createStatement();
+				ResultSet rs = st.executeQuery("SELECT  p.imie,p.nazwisko FROM Pracownicy p ;");
+				while (rs.next()){       
+					
+			           String  imie_tmp = (rs.getString("imie")) ;
+			           String  nazwisko_tmp = (rs.getString("nazwisko")) ;
+			             pracownicyImiona.add(imie_tmp+" "+nazwisko_tmp);
+			             }
+				
+				st.close();
+			
+		}
+		catch(SQLException z)  {
+			System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
+			}
+		for (int i =0;i<pracownicyImiona.size();i++)
+			comboBoxSerwisant.addItem(pracownicyImiona.get(i));
 		JLabel lblDaneKlienta = new JLabel("Dane klienta");
+		lblDaneKlienta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDaneKlienta.setBounds(40, 192, 98, 14);
 		add(lblDaneKlienta);
 		
@@ -70,9 +110,43 @@ public class NoweZlecenie extends JPanel {
 		lblWyszukaj.setBounds(40, 217, 243, 14);
 		add(lblWyszukaj);
 		
-		JComboBox comboBoxWyszukaj = new JComboBox();
+		JComboBox comboBoxWyszukaj = new JComboBox();	
+		
+			
+			
 		comboBoxWyszukaj.setBounds(40, 242, 243, 20);
 		add(comboBoxWyszukaj);
+		try { 
+			c = DriverManager.getConnection("jdbc:postgresql://horton.elephantsql.com:5432/cgztcato",
+		            "cgztcato", "En74d8gVrZZAtiO97NEYI7FN-DiReO9h");
+		  } catch (SQLException se) {
+		    System.out.println("Brak polaczenia z baza danych, wydruk logu sledzenia i koniec.");
+		    se.printStackTrace();
+		    System.exit(1);}
+				
+				try{
+									
+											
+						Statement st = c.createStatement();
+						ResultSet rs = st.executeQuery("SELECT  p.imie,p.nazwisko FROM Klienci p ;");
+						while (rs.next()){       
+							
+					           String  imie_tmp = (rs.getString("imie")) ;
+					           String  nazwisko_tmp = (rs.getString("nazwisko")) ;
+					             klienciImiona.add(imie_tmp+" "+nazwisko_tmp);
+					             }
+						st.close();
+						
+					
+				}
+				catch(SQLException z)  {
+					System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
+					}
+				for (int i =0;i<klienciImiona.size();i++)
+					comboBoxWyszukaj.addItem(klienciImiona.get(i));
+				
+				
+				
 		
 		JLabel lblRecznie = new JLabel("lub wpisz rêcznie wszystkie dane:");
 		lblRecznie.setBounds(40, 273, 243, 14);
@@ -139,6 +213,7 @@ public class NoweZlecenie extends JPanel {
 		txtKontakt.setColumns(10);
 		
 		JLabel lblUrzadzenieinfo = new JLabel("Urzadzenie:");
+		lblUrzadzenieinfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblUrzadzenieinfo.setBounds(591, 11, 103, 14);
 		add(lblUrzadzenieinfo);
 		
@@ -269,5 +344,66 @@ public class NoweZlecenie extends JPanel {
 		textField.setBounds(706, 153, 182, 20);
 		add(textField);
 		
+		comboBoxWyszukaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if((String) comboBoxWyszukaj.getSelectedItem()!="---"){
+					txtNrklienta.setEnabled(false);
+					txtImie.setEnabled(false);
+					txtNazwisko.setEnabled(false);
+					txtAdres.setEnabled(false);
+					txtMail.setEnabled(false);
+					txtKontakt.setEnabled(false);
+					Connection c = null;
+					try { 
+				c = DriverManager.getConnection("jdbc:postgresql://horton.elephantsql.com:5432/cgztcato",
+			            "cgztcato", "En74d8gVrZZAtiO97NEYI7FN-DiReO9h");
+			  } catch (SQLException se) {
+			    System.out.println("Brak polaczenia z baza danych, wydruk logu sledzenia i koniec.");
+			    se.printStackTrace();
+			    System.exit(1);}
+					String imie = (String) comboBoxWyszukaj.getSelectedItem();
+					int index =imie.indexOf(" ");
+					String nazwisko = imie.substring(index+1);
+					imie =imie.substring(0, index);
+					try{
+										
+												
+							Statement st = c.createStatement();
+							ResultSet rs = st.executeQuery("SELECT k.id_klienta, k.imie,k.nazwisko,k.adres,k.mail,k.inne FROM Klienci k  where k.imie = \'"+imie+"\' and k.nazwisko = \'"+nazwisko+"\';");
+							while (rs.next()){       
+									txtNrklienta.setText((rs.getString("id_klienta")));
+						           txtImie.setText((rs.getString("imie"))) ;
+						           txtNazwisko.setText((rs.getString("nazwisko")));
+						           txtAdres.setText((rs.getString("adres")));
+						           txtMail.setText((rs.getString("mail")));
+						           txtKontakt.setText((rs.getString("inne")));
+						             //pracownicyImiona.add(imie_tmp+" "+nazwisko_tmp);
+						             }
+							
+							st.close();
+						
+					}
+					catch(SQLException z)  {
+						System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
+						}
+					
+				}	
+				else {
+					txtNrklienta.setEnabled(true);
+					txtNrklienta.setText("");
+					txtImie.setEnabled(true);
+					txtImie.setText("");
+					txtNazwisko.setEnabled(true);
+					txtNazwisko.setText("");
+					txtAdres.setEnabled(true);
+					txtAdres.setText("");
+					txtMail.setEnabled(true);
+					txtMail.setText("");
+					txtKontakt.setEnabled(true);
+					txtKontakt.setText("");
+					
+				}
+			}
+		});
 	}
 }
