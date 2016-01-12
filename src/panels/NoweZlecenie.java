@@ -22,6 +22,10 @@ import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 public class NoweZlecenie extends JPanel {
 	private JTextField textNazwa;
 	private JTextField txtImie;
@@ -42,6 +46,8 @@ public class NoweZlecenie extends JPanel {
 	public ArrayList<String> klienciImiona = new ArrayList<>();
 	public ArrayList<String> rodzajSprz = new ArrayList<>();
 	public ArrayList<String> sprzetModele = new ArrayList<>();
+	final private String pauzy = "---";
+	private JTextField txtNazwaUsterki;
 	/**
 	 * Create the panel.
 	 */
@@ -52,8 +58,8 @@ public class NoweZlecenie extends JPanel {
 		setLayout(null);
 		
 		JLabel lblDodaj = new JLabel("Dodaj nowe zlecenie");
-		lblDodaj.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDodaj.setBounds(40, 26, 137, 25);
+		lblDodaj.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblDodaj.setBounds(40, 6, 167, 25);
 		add(lblDodaj);
 		
 		JLabel lblNazwa = new JLabel("Nazwa:");
@@ -65,12 +71,13 @@ public class NoweZlecenie extends JPanel {
 		add(lblSerwisant);
 		
 		textNazwa = new JTextField();
-		textNazwa.setBounds(167, 51, 116, 20);
+		textNazwa.setBounds(167, 50, 116, 20);
 		add(textNazwa);
 		textNazwa.setColumns(10);
-		pracownicyImiona.add("---");
-		klienciImiona.add("---");
+		pracownicyImiona.add(pauzy);
+		klienciImiona.add(pauzy);
 		JComboBox comboBoxSerwisant = new JComboBox();
+		comboBoxSerwisant.setMaximumRowCount(5);
 		comboBoxSerwisant.setBounds(167, 75, 116, 20);
 		add(comboBoxSerwisant);
 		Connection c = null;
@@ -103,7 +110,7 @@ public class NoweZlecenie extends JPanel {
 		for (int i =0;i<pracownicyImiona.size();i++)
 			comboBoxSerwisant.addItem(pracownicyImiona.get(i));
 		JLabel lblDaneKlienta = new JLabel("Dane klienta");
-		lblDaneKlienta.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDaneKlienta.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblDaneKlienta.setBounds(40, 192, 98, 14);
 		add(lblDaneKlienta);
 		
@@ -112,7 +119,7 @@ public class NoweZlecenie extends JPanel {
 		add(lblWyszukaj);
 		
 		JComboBox comboBoxWyszukaj = new JComboBox();	
-		
+		comboBoxWyszukaj.setMaximumRowCount(5);
 			
 			
 		comboBoxWyszukaj.setBounds(40, 242, 243, 20);
@@ -208,16 +215,16 @@ public class NoweZlecenie extends JPanel {
 		txtKontakt.setColumns(10);
 		
 		JLabel lblUrzadzenieinfo = new JLabel("Urzadzenie:");
-		lblUrzadzenieinfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUrzadzenieinfo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblUrzadzenieinfo.setBounds(386, 11, 103, 14);
 		add(lblUrzadzenieinfo);
 		
 		JLabel lblRodzajurzadzenia = new JLabel("Rodzaj urzadzenia: ");
-		lblRodzajurzadzenia.setBounds(386, 36, 116, 14);
+		lblRodzajurzadzenia.setBounds(386, 53, 116, 14);
 		add(lblRodzajurzadzenia);
-		rodzajSprz.add("---");
+		rodzajSprz.add(pauzy);
 		JComboBox comboBoxRodzajUrz = new JComboBox();
-		
+		comboBoxRodzajUrz.setMaximumRowCount(5);
 		try { 
 			c = DriverManager.getConnection("jdbc:postgresql://horton.elephantsql.com:5432/cgztcato",
 		            "cgztcato", "En74d8gVrZZAtiO97NEYI7FN-DiReO9h");
@@ -252,81 +259,78 @@ public class NoweZlecenie extends JPanel {
 					imie =imie.substring(0, index);*/
 					comboBoxRodzajUrz.addItem(rodzajSprz.get(i));
 				}
-		comboBoxRodzajUrz.setBounds(501, 33, 182, 20);
+		comboBoxRodzajUrz.setBounds(501, 50, 182, 20);
 		add(comboBoxRodzajUrz);
 		
 		JLabel lblWybor = new JLabel("Wybierz urz¹dzenie z listy: ");
-		lblWybor.setBounds(386, 61, 167, 14);
+		lblWybor.setBounds(386, 78, 167, 14);
 		add(lblWybor);
 		
 		JComboBox comboBoxUrzadzenie = new JComboBox();
-		comboBoxUrzadzenie.setBounds(386, 75, 297, 20);
+		comboBoxUrzadzenie.setMaximumRowCount(5);
+		comboBoxUrzadzenie.setBounds(386, 103, 297, 20);
 		add(comboBoxUrzadzenie);
 		
 		JLabel lblWpiszinfo = new JLabel("lub wpisz rêcznie wszystkie podzespo³y:");
-		lblWpiszinfo.setBounds(386, 106, 297, 14);
+		lblWpiszinfo.setBounds(386, 128, 297, 14);
 		add(lblWpiszinfo);
 		
 		JLabel lblPlytaGlowna = new JLabel("P³yta g³ówna:");
-		lblPlytaGlowna.setBounds(386, 184, 103, 14);
+		lblPlytaGlowna.setBounds(386, 206, 103, 14);
 		add(lblPlytaGlowna);
 		
 		JLabel lblProcesor = new JLabel("Procesor:");
-		lblProcesor.setBounds(386, 209, 103, 14);
+		lblProcesor.setBounds(386, 231, 103, 14);
 		add(lblProcesor);
 		
 		JLabel lblKartaGraficzna = new JLabel("Karta graficzna:");
-		lblKartaGraficzna.setBounds(386, 234, 103, 14);
+		lblKartaGraficzna.setBounds(386, 256, 103, 14);
 		add(lblKartaGraficzna);
 		
 		JLabel lblBateria = new JLabel("Bateria:");
-		lblBateria.setBounds(386, 259, 103, 14);
+		lblBateria.setBounds(386, 281, 103, 14);
 		add(lblBateria);
 		
 		JLabel lblHdd = new JLabel("HDD:");
-		lblHdd.setBounds(386, 284, 103, 14);
+		lblHdd.setBounds(386, 306, 103, 14);
 		add(lblHdd);
 		
 		txtPlytaglowna = new JTextField();
 		txtPlytaglowna.setText("");
-		txtPlytaglowna.setBounds(501, 181, 182, 20);
+		txtPlytaglowna.setBounds(501, 203, 182, 20);
 		add(txtPlytaglowna);
 		txtPlytaglowna.setColumns(10);
 		
 		txtProcesor = new JTextField();
 		txtProcesor.setText("");
-		txtProcesor.setBounds(501, 206, 182, 20);
+		txtProcesor.setBounds(501, 228, 182, 20);
 		add(txtProcesor);
 		txtProcesor.setColumns(10);
 		
 		txtKartagraficzna = new JTextField();
 		txtKartagraficzna.setText("");
-		txtKartagraficzna.setBounds(501, 231, 182, 20);
+		txtKartagraficzna.setBounds(501, 253, 182, 20);
 		add(txtKartagraficzna);
 		txtKartagraficzna.setColumns(10);
 		
 		txtBateria = new JTextField();
 		txtBateria.setText("");
-		txtBateria.setBounds(501, 256, 182, 20);
+		txtBateria.setBounds(501, 278, 182, 20);
 		add(txtBateria);
 		txtBateria.setColumns(10);
 		
 		txtHdd = new JTextField();
 		txtHdd.setText("");
-		txtHdd.setBounds(501, 281, 182, 20);
+		txtHdd.setBounds(501, 303, 182, 20);
 		add(txtHdd);
 		txtHdd.setColumns(10);
 		
-		JLabel lblInfusterka = new JLabel("Informacje o usterce:");
-		lblInfusterka.setBounds(760, 129, 167, 14);
-		add(lblInfusterka);
-		
 		JLabel lblOpisusterki = new JLabel("Opis usterki: ");
-		lblOpisusterki.setBounds(760, 146, 167, 14);
+		lblOpisusterki.setBounds(760, 159, 167, 14);
 		add(lblOpisusterki);
 		
 		JPanel panelOpisUsterki = new JPanel();
-		panelOpisUsterki.setBounds(760, 164, 235, 70);
+		panelOpisUsterki.setBounds(760, 184, 235, 70);
 		add(panelOpisUsterki);
 		panelOpisUsterki.setLayout(null);
 		
@@ -336,42 +340,42 @@ public class NoweZlecenie extends JPanel {
 		txtpnOpisusterki.setText("");
 		
 		JLabel lblDatausterki = new JLabel("Data wyst¹pienia usterki: ");
-		lblDatausterki.setBounds(760, 236, 168, 14);
+		lblDatausterki.setBounds(760, 273, 168, 14);
 		add(lblDatausterki);
 		
 		txtDataUsterki = new JTextField();
-		txtDataUsterki.setBounds(760, 259, 116, 20);
+		txtDataUsterki.setBounds(915, 270, 108, 20);
 		add(txtDataUsterki);
 		txtDataUsterki.setColumns(10);
 		
 		JLabel lblProducent = new JLabel("Producent:");
-		lblProducent.setBounds(386, 134, 103, 14);
+		lblProducent.setBounds(386, 156, 103, 14);
 		add(lblProducent);
 		
 		txtProducent = new JTextField();
 		txtProducent.setText("");
 		txtProducent.setColumns(10);
-		txtProducent.setBounds(501, 131, 182, 20);
+		txtProducent.setBounds(501, 153, 182, 20);
 		add(txtProducent);
 		
 		JLabel lblMatryca = new JLabel("Matryca:");
-		lblMatryca.setBounds(386, 309, 103, 14);
+		lblMatryca.setBounds(386, 331, 103, 14);
 		add(lblMatryca);
 		
 		txtMatryca = new JTextField();
 		txtMatryca.setText("");
 		txtMatryca.setColumns(10);
-		txtMatryca.setBounds(501, 306, 182, 20);
+		txtMatryca.setBounds(501, 328, 182, 20);
 		add(txtMatryca);
 		
 		JLabel label = new JLabel("Matryca:");
-		label.setBounds(386, 159, 103, 14);
+		label.setBounds(386, 181, 103, 14);
 		add(label);
 		
 		textField = new JTextField();
 		textField.setText("");
 		textField.setColumns(10);
-		textField.setBounds(501, 156, 182, 20);
+		textField.setBounds(501, 178, 182, 20);
 		add(textField);
 		
 		JLabel lblNrklientatxt = new JLabel("");
@@ -382,31 +386,40 @@ public class NoweZlecenie extends JPanel {
 		lblOpisZlecenia.setBounds(40, 103, 98, 14);
 		add(lblOpisZlecenia);
 		
-		JPanel pnlOpisZlecenia = new JPanel();
-		pnlOpisZlecenia.setBounds(40, 134, 243, 57);
-		add(pnlOpisZlecenia);
-		pnlOpisZlecenia.setLayout(null);
-		
-		JTextPane textPanelOpisZlecenia = new JTextPane();
-		textPanelOpisZlecenia.setBounds(0, 0, 243, 57);
-		pnlOpisZlecenia.add(textPanelOpisZlecenia);
-		
 		JLabel lblUsterka = new JLabel("Usterka:");
-		lblUsterka.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUsterka.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblUsterka.setBounds(760, 11, 103, 14);
 		add(lblUsterka);
 		
 		JLabel lblWybierzUsterkZ = new JLabel("Wybierz usterk\u0119 z listy: ");
-		lblWybierzUsterkZ.setBounds(760, 51, 167, 14);
+		lblWybierzUsterkZ.setBounds(760, 53, 167, 14);
 		add(lblWybierzUsterkZ);
 		
 		JComboBox comboBoxUsterka = new JComboBox();
-		comboBoxUsterka.setBounds(760, 73, 235, 20);
+		comboBoxUsterka.setMaximumRowCount(5);
+		comboBoxUsterka.setBounds(760, 75, 235, 20);
 		add(comboBoxUsterka);
 		
 		JLabel lblUsterkaRecznie = new JLabel("lub wpisz usterkê rêcznie: ");
 		lblUsterkaRecznie.setBounds(760, 104, 167, 14);
 		add(lblUsterkaRecznie);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(40, 129, 243, 57);
+		add(scrollPane);
+		
+		JTextPane textPanelOpisZlecenia = new JTextPane();
+		scrollPane.setViewportView(textPanelOpisZlecenia);
+		
+		JLabel lblNazwausterki = new JLabel("Nazwa usterki:");
+		lblNazwausterki.setBounds(760, 131, 103, 14);
+		add(lblNazwausterki);
+		
+		txtNazwaUsterki = new JTextField();
+		txtNazwaUsterki.setBounds(915, 125, 108, 20);
+		add(txtNazwaUsterki);
+		txtNazwaUsterki.setColumns(10);
+		
 		
 		comboBoxWyszukaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -500,15 +513,18 @@ public class NoweZlecenie extends JPanel {
 							System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
 							}
 						comboBoxUrzadzenie.removeAllItems();
-						for (int i =0;i<sprzetModele.size();i++){
-							/*String rodzajNazwa = rodzajSprz.get(i);
-							int index =rodzajNazwa.indexOf(" ");
-							String rodzajID = imie.substring(index+1);
-							imie =imie.substring(0, index);*/
+						comboBoxUrzadzenie.addItem(pauzy);
+						for (int i =0;i<sprzetModele.size();i++){							
 							comboBoxUrzadzenie.addItem(sprzetModele.get(i));
 						}
 				
 			}
 		});
+		ImageIcon dodaj = new ImageIcon(getClass().getResource("dodaj.png"));
+		JButton btnDodaj = new JButton(dodaj);
+		btnDodaj.setBounds(886, 413, 137, 37);
+		btnDodaj.setContentAreaFilled(false);
+		btnDodaj.setBorder(BorderFactory.createEmptyBorder());
+		add(btnDodaj);
 	}
 }
