@@ -1,8 +1,10 @@
 package panels;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Image;
 
 public class PanelGlowny extends JPanel {
 
@@ -14,8 +16,13 @@ public class PanelGlowny extends JPanel {
 		setBounds(0,0, 1072, 502);
 		setBackground(new Color(0xf7f7f7));
 		
-		JLabel lblPanelglownyLogo = new JLabel("PANELGLOWNY LOGO");
-		lblPanelglownyLogo.setBounds(242, 173, 163, 41);
-		add(lblPanelglownyLogo);
+		
+		ImageIcon image1 = new ImageIcon(getClass().getResource("logo.png"));
+		//Image img = image1.getImage() ;  
+		   //Image newimg = img.getScaledInstance( 150, 140,  java.awt.Image.SCALE_SMOOTH ) ;  
+		  // image1 = new ImageIcon( newimg );
+		   JLabel lblPanelglownyLogo = new JLabel(image1);
+			lblPanelglownyLogo.setBounds(463, 132, 191, 208);
+			add(lblPanelglownyLogo);
 	}
 }

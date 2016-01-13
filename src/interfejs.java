@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
-import panels.*;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+import panels.PanelNaprawy;
 import panels.PanelGlowny;
 import panels.NoweZlecenie;
 
@@ -35,7 +34,8 @@ int tmp = 0;
 	//public JPanel panelCurrent;
 	public NoweZlecenie panel_zlecenie;
 	public PanelGlowny panel_home;
-	protected JPanel currentPanel;
+	public JPanel currentPanel;
+	public PanelNaprawy panel_naprawy;
 	/**
 	 * Launch the application.
 	 */
@@ -158,6 +158,7 @@ int tmp = 0;
 ImageIcon home = new ImageIcon(getClass().getResource("home.png"));
 JButton btnHome = new JButton(home);
 btnCurrent = btnHome;
+
 //btnHome.setEnabled(false);
 btnHome.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
@@ -211,13 +212,12 @@ ImageIcon naprawy = new ImageIcon(getClass().getResource("naprawy.png"));
 JButton btnNaprawy = new JButton(naprawy);
 btnNaprawy.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
-		/*btnNaprawy.setEnabled(false);
-		btnCurrent.setEnabled(true);
-		btnCurrent = btnNaprawy;*/
-		
-		
-		//panel_glowny.repaint();
-		//panel_glowny.setVisible(true);
+		panel_naprawy= new PanelNaprawy();
+		panel_glowny.remove(currentPanel);
+		panel_glowny.add(panel_naprawy);
+		panel_naprawy.setVisible(true);
+		currentPanel = panel_naprawy;
+		panel_glowny.repaint();
 		
 	}
 });

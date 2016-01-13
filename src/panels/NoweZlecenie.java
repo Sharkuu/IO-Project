@@ -21,7 +21,6 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -716,7 +715,7 @@ public class NoweZlecenie extends JPanel {
 							catch(SQLException z)  {
 								System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
 								}
-				}
+				}				
 				if(comboBoxUrzadzenie.getSelectedItem() == pauzy){
 					Connection c = null;
 					try { 
@@ -781,7 +780,7 @@ public class NoweZlecenie extends JPanel {
 						try{					
 							boolean rs;		
 								Statement st = c.createStatement();								
-								 rs = st.execute("insert into Naprawy(opis,datausterki,dataprzyjecia,id_pracownika,id_usterki,id_klienta,id_sprzetu,id_status) values (\'"+textPanelOpisZlecenia.getText()+"\',CURRENT_DATE,\'"+txtDataUsterki.getText()+"\',(select id_pracownika from Pracownicy where imie = \'"+imie_pracownika+"\' and nazwisko = \'"+nazwisko_pracownika+"\'),(select id_usterki from Usterki where nazwa = \'"+txtNazwaUsterki.getText()+"\' and opis = \'"+txtpnOpisusterki.getText()+"\'),(select id_klienta from Klienci where imie = \'"+txtImie.getText()+"\' and nazwisko = \'"+txtNazwisko.getText()+"\'),(select id_sprzetu from Sprzet where producent = \'"+txtProducent.getText()+"\' and model = \'"+txtModel.getText()+"\'),(select id_status from StatusNaprawy where nazwa = 'Oczekuj¹ca') ) ;");
+								 rs = st.execute("insert into Naprawy(postep,opis,datausterki,dataprzyjecia,id_pracownika,id_usterki,id_klienta,id_sprzetu,id_status) values (0,\'"+textPanelOpisZlecenia.getText()+"\',CURRENT_DATE,\'"+txtDataUsterki.getText()+"\',(select id_pracownika from Pracownicy where imie = \'"+imie_pracownika+"\' and nazwisko = \'"+nazwisko_pracownika+"\'),(select id_usterki from Usterki where nazwa = \'"+txtNazwaUsterki.getText()+"\' and opis = \'"+txtpnOpisusterki.getText()+"\'),(select id_klienta from Klienci where imie = \'"+txtImie.getText()+"\' and nazwisko = \'"+txtNazwisko.getText()+"\'),(select id_sprzetu from Sprzet where producent = \'"+txtProducent.getText()+"\' and model = \'"+txtModel.getText()+"\'),(select id_status from StatusNaprawy where nazwa = 'Oczekuj¹ca') ) ;");
 
 								    st.close();
 							c.close();
@@ -789,7 +788,9 @@ public class NoweZlecenie extends JPanel {
 						catch(SQLException z)  {
 							System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
 							}
+						
 			}
+			
 		});
 		btnDodaj.setBounds(886, 413, 137, 37);
 		btnDodaj.setContentAreaFilled(false);
