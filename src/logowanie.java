@@ -28,6 +28,7 @@ public class logowanie {
 	public static JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	protected String nazwaStanowiska_tmp;
 
 	/**
 	 * Launch the application.
@@ -136,16 +137,17 @@ public class logowanie {
 									
 											
 						Statement st = c.createStatement();
-						ResultSet rs = st.executeQuery("SELECT p.id_stanowiska, p.imie,p.nazwisko FROM Pracownicy p where p.login =\'"+login+"\' and p.haslo = \'"+password+"\' ;");
+						ResultSet rs = st.executeQuery("SELECT s.nazwa,p.id_stanowiska, p.imie,p.nazwisko FROM Pracownicy p, Stanowisko s where p.login =\'"+login+"\' and p.haslo = \'"+password+"\' and s.id_stanowiska = p.id_stanowiska;");
 						while (rs.next()){       
 							 idstanowisko = (rs.getString("id_stanowiska")) ;
 					             imie_tmp = (rs.getString("imie")) ;
 					             nazwisko_tmp = (rs.getString("nazwisko")) ;
-					             
+					             nazwaStanowiska_tmp = (rs.getString("nazwa")) ;
 					             if(!idstanowisko.isEmpty()){
 					            	 stanowiskoid = Integer.parseInt(idstanowisko);
 					            	 imie = imie_tmp;
 					            	 nazwisko = nazwisko_tmp;
+					            	 stanowisko = nazwaStanowiska_tmp;
 					            	 break;
 					             }
 						}
@@ -163,9 +165,7 @@ public class logowanie {
 					err.ErrorScreen();
 					
 				}
-				else{
-					if(stanowiskoid == 1)
-						stanowisko = "Pracownik";
+				else{					
 					interfejs wind2 = new interfejs();
 				    frame.setVisible(false);
 					wind2.InterfaceScreen();

@@ -52,6 +52,8 @@ public class NoweZlecenie extends JPanel {
 	private JTextField txtRodzaj;
 	protected String lastModel;
 	protected String lastRodzaj;
+	protected String imie_pracownika;
+	protected String nazwisko_pracownika;
 	/**
 	 * Create the panel.
 	 */
@@ -81,6 +83,15 @@ public class NoweZlecenie extends JPanel {
 		klienciImiona.add(pauzy);
 		rodzajUsterki.add(pauzy);
 		JComboBox comboBoxSerwisant = new JComboBox();
+		comboBoxSerwisant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboBoxSerwisant.getSelectedItem() != pauzy){
+				 imie_pracownika = (String) comboBoxSerwisant.getSelectedItem();
+				int index =imie_pracownika.indexOf(" ");
+				nazwisko_pracownika = imie_pracownika.substring(index+1);
+				imie_pracownika =imie_pracownika.substring(0, index);}
+			}
+		});
 		comboBoxSerwisant.setMaximumRowCount(5);
 		comboBoxSerwisant.setBounds(167, 75, 116, 20);
 		add(comboBoxSerwisant);
@@ -758,7 +769,26 @@ public class NoweZlecenie extends JPanel {
 								System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
 								}
 				}
-				
+				Connection c = null;
+				try { 
+					c = DriverManager.getConnection("jdbc:postgresql://horton.elephantsql.com:5432/cgztcato",
+				            "cgztcato", "En74d8gVrZZAtiO97NEYI7FN-DiReO9h");
+				  } catch (SQLException se) {
+				    System.out.println("Brak polaczenia z baza danych, wydruk logu sledzenia i koniec.");
+				    se.printStackTrace();
+				    System.exit(1);}
+				String rodzaj_tmp ="";
+						try{					
+							boolean rs;		
+								Statement st = c.createStatement();								
+								 rs = st.execute("insert into Naprawy(opis,datausterki,dataprzyjecia,id_pracownika,id_usterki,id_klienta,id_sprzetu,id_status) values (\'"+textPanelOpisZlecenia.getText()+"\',CURRENT_DATE,\'"+txtDataUsterki.getText()+"\',(select id_pracownika from Pracownicy where imie = \'"+imie_pracownika+"\' and nazwisko = \'"+nazwisko_pracownika+"\'),(select id_usterki from Usterki where nazwa = \'"+txtNazwaUsterki.getText()+"\' and opis = \'"+txtpnOpisusterki.getText()+"\'),(select id_klienta from Klienci where imie = \'"+txtImie.getText()+"\' and nazwisko = \'"+txtNazwisko.getText()+"\'),(select id_sprzetu from Sprzet where producent = \'"+txtProducent.getText()+"\' and model = \'"+txtModel.getText()+"\'),(select id_status from StatusNaprawy where nazwa = 'Oczekuj¹ca') ) ;");
+
+								    st.close();
+							c.close();
+						}
+						catch(SQLException z)  {
+							System.out.println("Blad podczas przetwarzania danych:\n"+z) ;  
+							}
 			}
 		});
 		btnDodaj.setBounds(886, 413, 137, 37);

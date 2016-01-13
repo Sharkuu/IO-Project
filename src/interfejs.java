@@ -8,18 +8,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
+
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
 
+
+import panels.PanelGlowny;
 import panels.NoweZlecenie;
 
-import javax.swing.Icon;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 
 public class interfejs {
 int tmp = 0;
@@ -35,7 +34,8 @@ int tmp = 0;
 	public JButton btnCurrent;
 	//public JPanel panelCurrent;
 	public NoweZlecenie panel_zlecenie;
-
+	public PanelGlowny panel_home;
+	protected JPanel currentPanel;
 	/**
 	 * Launch the application.
 	 */
@@ -149,7 +149,11 @@ int tmp = 0;
 		frame.getContentPane().add(panel_glowny);
 		panel_glowny.setLayout(null);
 		
-		
+		panel_home= new PanelGlowny();
+		panel_glowny.add(panel_home);
+		panel_glowny.setVisible(true);
+		panel_glowny.repaint();
+		currentPanel = panel_home;
 ////////////////przycisk home
 ImageIcon home = new ImageIcon(getClass().getResource("home.png"));
 JButton btnHome = new JButton(home);
@@ -160,9 +164,16 @@ btnHome.addActionListener(new ActionListener() {
 		/*btnHome.setEnabled(false);
 		btnCurrent.setEnabled(true);
 		btnCurrent = btnHome;*/
-
-	panel_glowny.remove(panel_zlecenie);
+		panel_glowny.remove(currentPanel);
+		panel_home= new PanelGlowny();	
+		currentPanel = panel_home;
+	panel_glowny.add(panel_home);
+	panel_home.setVisible(true);
 	panel_glowny.repaint();
+	/*panel_zlecenie= new NoweZlecenie();
+	panel_glowny.add(panel_zlecenie);
+	panel_zlecenie.setVisible(true);
+	panel_glowny.repaint();*/
 		
 	}
 });
@@ -178,8 +189,10 @@ btnNowy.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
 		
 		panel_zlecenie= new NoweZlecenie();
+		panel_glowny.remove(currentPanel);
 		panel_glowny.add(panel_zlecenie);
 		panel_zlecenie.setVisible(true);
+		currentPanel = panel_zlecenie;
 		panel_glowny.repaint();
 		
 		/*btnNowy.setEnabled(false);
